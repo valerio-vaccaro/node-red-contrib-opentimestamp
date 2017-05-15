@@ -63,6 +63,8 @@ module.exports = function(RED) {
           msg.payload = 'Timestamp not upgraded';
           node.send(msg);
         } else {
+          var ots = new Buffer(timestampBytes);
+          msg.otsArray = ots;
           msg.payload = 'Timestamp upgraded';
           node.send(msg);
         }
