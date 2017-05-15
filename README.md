@@ -1,7 +1,12 @@
 # node-red-contrib-opentimestamps
-A collection of [Node-RED](http://nodered.org) nodes to read and emulate iBeacon tags with on board Bluetooth 4.0 radio or by using a cheap Bluetooth 4.0 USB adapter.
+A collection of [Node-RED](http://nodered.org) nodes use the OpenTimestamps services.
 
 ## What you mean with *opentimestamps*?
+>A timestamping proof standard
+
+>OpenTimestamps aims to be a standard format for blockchain timestamping. The format is flexible enough to be vendor and blockchain independent.
+
+OpenTimestamps is a standard for obtain a service with Trustless Timestamps or in other words timestamps secured by the blockchain.
 
 ## Install
 Use npm to command to install this package locally in the Node-RED modules directory

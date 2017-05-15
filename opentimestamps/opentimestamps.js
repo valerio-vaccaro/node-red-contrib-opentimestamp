@@ -26,6 +26,11 @@ module.exports = function(RED) {
   // Node for stamp a Buffer content
   function opentimestamps_stamp(n) {
     RED.nodes.createNode(this, n);
+    this.status({
+      fill: "grey",
+      shape: "dot",
+      text: "Create new timestamp ..."
+    });
     var msg = {};
     var node = this;
     this.on("input", function(msg) {
@@ -35,6 +40,11 @@ module.exports = function(RED) {
         // convert the stampResult in a Buffer
         var ots = new Buffer(stampResult);
         msg.otsArray = ots;
+        this.status({
+          fill: "green",
+          shape: "dot",
+          text: "Done"
+        });
         node.send(msg);
       });
     });
@@ -42,17 +52,32 @@ module.exports = function(RED) {
 
   function opentimestamps_info(n) {
     RED.nodes.createNode(this, n);
+    this.status({
+      fill: "grey",
+      shape: "dot",
+      text: "Get timestamp info ..."
+    });
     var msg = {};
     var node = this;
     this.on("input", function(msg) {
       const infoResult = OpenTimestamps.info(msg.otsArray);
       msg.payload = infoResult;
+      this.status({
+        fill: "green",
+        shape: "dot",
+        text: "Done"
+      });
       node.send(msg);
     });
   }
 
   function opentimestamps_upgrade(n) {
     RED.nodes.createNode(this, n);
+    this.status({
+      fill: "grey",
+      shape: "dot",
+      text: "Uprading timestamp ..."
+    });
     var msg = {};
     var node = this;
     this.on("input", function(msg) {
@@ -61,11 +86,21 @@ module.exports = function(RED) {
       upgradePromise.then(timestampBytes => {
         if (ots.equals(timestampBytes)) {
           msg.payload = 'Timestamp not upgraded';
+          this.status({
+            fill: "green",
+            shape: "dot",
+            text: "Timestamp note upgraded"
+          });
           node.send(msg);
         } else {
           var ots = new Buffer(timestampBytes);
           msg.otsArray = ots;
           msg.payload = 'Timestamp upgraded';
+          this.status({
+            fill: "red",
+            shape: "dot",
+            text: "Timestamp upgraded"
+          });
           node.send(msg);
         }
       }).catch(err => {
@@ -76,6 +111,11 @@ module.exports = function(RED) {
 
   function opentimestamps_verify(n) {
     RED.nodes.createNode(this, n);
+    this.status({
+      fill: "grey",
+      shape: "dot",
+      text: "Verify a timestamp ... "
+    });
     var msg = {};
     var node = this;
     this.on("input", function(msg) {
@@ -84,6 +124,11 @@ module.exports = function(RED) {
       verifyResultPromise.then(verifyResult => {
         // return a timestamp if verified, undefined otherwise.
         msg.payload = verifyResult;
+        this.status({
+          fill: "green",
+          shape: "dot",
+          text: "Done"
+        });
         node.send(msg);
       });
     });
