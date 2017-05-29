@@ -81,7 +81,7 @@ module.exports = function(RED) {
     var msg = {};
     var node = this;
     this.on("input", function(msg) {
-      const ots = msg.otsArray;
+      var ots = msg.otsArray;
       const upgradePromise = OpenTimestamps.upgrade(ots);
       upgradePromise.then(timestampBytes => {
         if (ots.equals(timestampBytes)) {
@@ -93,8 +93,8 @@ module.exports = function(RED) {
           });
           node.send(msg);
         } else {
-          var ots = new Buffer(timestampBytes);
-          msg.otsArray = ots;
+          var newOts = new Buffer(timestampBytes);
+          msg.otsArray = newOts;
           msg.payload = 'Timestamp upgraded';
           this.status({
             fill: "red",
