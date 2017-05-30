@@ -87,17 +87,17 @@ module.exports = function(RED) {
         if (ots.equals(timestampBytes)) {
           msg.payload = 'Timestamp not upgraded';
           this.status({
-            fill: "green",
+            fill: "yellow",
             shape: "dot",
             text: "Timestamp note upgraded"
           });
-          node.send(msg);
+          //node.send(msg);
         } else {
           var newOts = new Buffer(timestampBytes);
           msg.otsArray = newOts;
           msg.payload = 'Timestamp upgraded';
           this.status({
-            fill: "red",
+            fill: "green",
             shape: "dot",
             text: "Timestamp upgraded"
           });
