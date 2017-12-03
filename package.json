@@ -1,10 +1,10 @@
 {
   "name": "node-red-contrib-opentimestamps",
-  "version": "0.0.5",
+  "version": "0.0.7",
   "description": "Node-RED implementation of OpenTimestamps.",
   "author": "Valerio Vaccaro <valerio.vaccaro@gmail.com>",
   "dependencies": {
-    "javascript-opentimestamps": "latest"
+    "javascript-opentimestamps": "0.1.18"
   },
   "repository": {
     "type": "git",

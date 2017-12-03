@@ -21,7 +21,6 @@
 //import the requirements
 const OpenTimestamps = require('javascript-opentimestamps');
 
-
 module.exports = function(RED) {
   // Node for stamp a Buffer content
   function opentimestamps_stamp(n) {
